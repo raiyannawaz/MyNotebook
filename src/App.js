@@ -18,7 +18,7 @@ function App() {
           <Navs />
           <Alerts />
           <Routes>
-            <Route path='/' element={<Home></Home>} />
+            <Route path='/' element={<Home/>} />
             <Route path='/login' element={<Login />} />
             <Route path='/register' element={<Register />} />
           </Routes>
