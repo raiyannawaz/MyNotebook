@@ -1,12 +1,15 @@
 import { Alert } from 'react-bootstrap'
 import Context from '../ContextAPI/Context'
 import { useContext } from 'react'
+import { useMediaQuery } from 'react-responsive'
 
 const Alerts = () =>{
 
     let { alerts } = useContext(Context)
 
-    return <Alert show={alerts.isShown} className='position-absolute py-2 px-3' variant={alerts.variant} style={{bottom: '10%', left: '50%', transform: 'translateX(-50%)', zIndex: 1075}}>
+    let isMobile = useMediaQuery({maxWidth: '450px'});
+
+    return <Alert show={alerts.isShown} className={`position-absolute py-2 px-2`} variant={alerts.variant} style={{minWidth: isMobile ? '70vw' : '', textAlign: isMobile ? 'center' : '', bottom: '10%', left: '50%', transform: 'translateX(-50%)', zIndex: 1075}}>
         {alerts.message} {alerts.icon}
     </Alert>
 }
