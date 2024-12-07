@@ -1,24 +1,30 @@
-import logo from './logo.svg';
 import './App.css';
+import 'bootstrap/dist/css/bootstrap.css'
+import 'bootstrap/dist/js/bootstrap.js'
+import { HashRouter as Router, Routes, Route } from 'react-router-dom'
+import ContextState from './ContextAPI/ContextState'
+import Navs from './Components/Navs'
+import Alerts from './Components/Alerts'
+import Home from './Pages/Home'
+import Login from './Pages/Login'
+import Register from './Pages/Register'
+import { CookiesProvider } from 'react-cookie'
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <CookiesProvider>
+      <ContextState>
+        <Router>
+          <Navs />
+          <Alerts />
+          <Routes>
+            <Route path='/' element={<Home></Home>} />
+            <Route path='/login' element={<Login />} />
+            <Route path='/register' element={<Register />} />
+          </Routes>
+        </Router>
+      </ContextState>
+    </CookiesProvider>
   );
 }
 
